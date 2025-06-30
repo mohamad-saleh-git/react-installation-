@@ -1,3 +1,40 @@
 npm create vite@latest -> npm i
 npx create-react-app ./
 npx create-next-app@latest
+
+for config vite for test
+
+npm create vite@latest -> npm i
+
+npm install --save-dev jest @testing-library/react @testing-library/jest-dom @types/jest babel-jest 
+
+create jest.config.js ->
+
+module.exports = {
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1' // اگر از alias استفاده می‌کنید
+  },
+  transform: {
+    '^.+\\.(js|jsx)$': 'babel-jest'
+  }
+};
+
+
+
+create jest.setup.js ->
+
+import '@testing-library/jest-dom';
+
+
+
+add test script to package.json -> 
+
+"scripts": {
+  "test": "jest"
+}
+
+
+
+happy hacking!
