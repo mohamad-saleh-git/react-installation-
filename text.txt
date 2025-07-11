@@ -43,6 +43,22 @@ export default {
 }
 
 
+npm install -D @types/jest
+
+
+create jsconfig.json ->
+
+
+{
+  "compilerOptions": {
+    "types": ["jest", "@testing-library/jest-dom"],
+    "allowJs": true,
+    "checkJs": true
+  },
+  "include": ["src"]
+}
+
+
 
 npm run test
 
