@@ -6,34 +6,45 @@ for config vite for test
 
 npm create vite@latest -> npm i
 
-npm install --save-dev jest @testing-library/react @testing-library/jest-dom @types/jest babel-jest 
+npm install -D jest @testing-library/react @testing-library/jest-dom @babel/preset-env @babel/preset-react babel-jest jest-environment-jsdom
 
-create jest.config.js ->
+create babel.config.js ->
 
 module.exports = {
-  testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1' // اگر از alias استفاده می‌کنید
-  },
-  transform: {
-    '^.+\\.(js|jsx)$': 'babel-jest'
-  }
-};
-
-
-
-create jest.setup.js ->
-
-import '@testing-library/jest-dom';
-
-
-
-add test script to package.json -> 
-
-"scripts": {
-  "test": "jest"
+  presets: [
+    '@babel/preset-env',
+    ['@babel/preset-react', { runtime: 'automatic' }]
+  ]
 }
+
+
+create src/setupTest.js ->
+
+import '@testing-library/jest-dom'
+
+
+package.json ->
+
+{
+  "scripts": {
+    "test": "jest"
+  }
+}
+
+
+create jest.config.mjs ->
+
+export default {
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['./src/setupTests.js'],
+  transform: {
+    '^.+\\.jsx?$': 'babel-jest'
+  }
+}
+
+
+
+npm run test
 
 
 
