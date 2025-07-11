@@ -51,12 +51,21 @@ create jsconfig.json ->
 
 {
   "compilerOptions": {
-    "types": ["jest", "@testing-library/jest-dom"],
+    "target": "ES6",
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "allowJs": true,
-    "checkJs": true
+    "checkJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": ["jest", "node"]
   },
   "include": ["src"]
 }
+
 
 
 
